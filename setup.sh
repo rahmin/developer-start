@@ -1,4 +1,6 @@
-# download command line tools at https://developer.apple.com
+# FIRST:::: make sure we have Xcode command line tools.
+# these can be downloaded at https://developer.apple.com/downloads
+# you don't need all of Xcode!
 
 # some tools will complain about not knowing where binaries are, until you do this:
 sudo xcode-select --switch /
@@ -18,7 +20,7 @@ ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
 # install important brew packages
 brew install wget git rbenv ruby-build
 
-# cask for mac os apps
+# install homebrew cask and some mac os apps
 brew tap phinze/homebrew-cask
 brew install brew-cask
 brew cask install onepassword google-chrome hipchat alfred skype caffeine
