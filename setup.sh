@@ -8,6 +8,7 @@ sudo xcode-select --switch /
 # set up a basic .profile
 cat <<EOF > ~/.profile
 export PATH="/usr/local/bin:$PATH"
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 export RBENV_ROOT=/usr/local/var/rbenv # use brew's rbenv directory
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi # rbenv shims & autocomplete
 [ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh  # load nvm
@@ -24,6 +25,7 @@ brew install wget git rbenv ruby-build
 brew tap phinze/homebrew-cask
 brew install brew-cask
 brew cask install onepassword google-chrome hipchat alfred skype caffeine
+brew cask alfred link
 
 # configure git
 git config --global push.default simple
