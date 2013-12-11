@@ -7,7 +7,8 @@ sudo xcode-select --switch /
 
 # set up a basic .profile
 cat <<EOF > ~/.profile
-export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/bin:$PATH" # homebrew
+export PATH="./node_modules/.bin/:$PATH" # locally installed node binaries
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 export RBENV_ROOT=/usr/local/var/rbenv # use brew's rbenv directory
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi # rbenv shims & autocomplete
