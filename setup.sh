@@ -79,7 +79,7 @@ brew install phantomjs
 # get production mongodb credentials
 npm install -g git+https://github.com/goodeggs/dump-and-restore
 cat <<EOF >> ~/.profile
-export AWS_ACCESS_KEY=xxxx # check 1password
+export AWS_ACCESS_KEY_ID=xxxx # check 1password
 export AWS_SECRET_ACCESS_KEY=xxxx # check 1password
 EOF
 
