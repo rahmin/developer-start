@@ -17,7 +17,7 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi # rbenv shims & auto
 EOF
 
 # install homebrew
-ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)" 
+ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)" 
 
 # install important brew packages
 brew install wget git rbenv ruby-build
