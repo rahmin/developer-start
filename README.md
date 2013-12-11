@@ -4,7 +4,7 @@ Download and install everything you need to make a new Good Eggs machine work. X
 
 ## instructions
 
-1. `wget https://raw.github.com/goodeggs/developer-start/master/setup.sh`
+1. `curl https://raw.github.com/goodeggs/developer-start/master/setup.sh > setup.sh`
 2. download [Command Line Tools for Xcode](https://developer.apple.com/downloads/) (**you don't need Xcode itself!**)
 3. modify the git config username and password in the script. (or figure out how to automate this and send me a pull request!)
 4. `sh ./setup.sh`
