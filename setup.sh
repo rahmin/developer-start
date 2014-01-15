@@ -24,7 +24,7 @@ ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"
 brew doctor
 
 # install important brew packages
-brew install wget git rbenv ruby-build
+brew install wget git rbenv ruby-build qt
 
 # install homebrew cask and some mac os apps
 brew tap phinze/homebrew-cask
