@@ -77,7 +77,7 @@ ln -sfv /usr/local/opt/rabbitmq/*.plist ~/Library/LaunchAgents
 launchctl load ~/Library/LaunchAgents/homebrew.mxcl.rabbitmq.plist
 
 # integration test tools
-brew install phantomjs selenium-server-standalone
+brew install phantomjs selenium-server-standalone chromedriver
 
 # get production mongodb credentials
 npm install -g git+https://github.com/goodeggs/dump-and-restore
