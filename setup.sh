@@ -62,9 +62,7 @@ git clone https://github.com/goodeggs/vault ~/.goodeggs-vault
 open ~/.goodeggs-vault/Good\ Eggs.agilekeychain
 
 # heroku
-gem install heroku
-rbenv rehash
-heroku keys
+brew install heroku
 
 # mongo
 brew install mongodb
