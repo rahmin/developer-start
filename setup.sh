@@ -48,8 +48,8 @@ nvm alias default v0.10.21
 npm install --global grunt-cli coffee-script
 
 # install a ruby
-rbenv install 2.0.0-p247
-rbenv global 2.0.0-p247
+rbenv install 1.9.3-p194
+rbenv global 1.9.3-p194
 
 # projects directory
 mkdir ~/Projects
