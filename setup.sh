@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # FIRST:::: make sure we have Xcode command line tools.
 # these can be downloaded at https://developer.apple.com/downloads
 # you don't need all of Xcode!
@@ -87,11 +89,14 @@ EOF
 # kale
 git clone https://github.com/goodeggs/kale ~/Projects/kale
 cd ~/Projects/kale
+npm cache clean
 npm install
 
 # garbanzo
 git clone https://github.com/goodeggs/garbanzo ~/Projects/garbanzo
 cd ~/Projects/garbanzo
+gem install bundler
+bundle install
 npm install
 
 # download data
