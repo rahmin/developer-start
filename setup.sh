@@ -22,7 +22,7 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi # rbenv shims & auto
 EOF
 
 # install homebrew
-ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)" 
+ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"
 brew doctor
 
 # install important brew packages
@@ -43,8 +43,8 @@ git config --global credential.helper osxkeychain
 # install nvm and node
 curl https://raw.github.com/creationix/nvm/master/install.sh | sh
 . ~/.profile
-nvm install v0.10.21
-nvm alias default v0.10.21
+nvm install v0.10.26
+nvm alias default v0.10.26
 
 # global node modules
 npm install --global grunt-cli coffee-script
