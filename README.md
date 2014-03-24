@@ -13,7 +13,6 @@ sudo sh -c 'echo "limit maxfiles 1000000 1000000" >> /etc/launchd.conf'
 4. `curl https://raw.github.com/goodeggs/developer-start/master/setup.sh > setup.sh`
 5. modify the git config username and password in the script. (or figure out how to automate this and send me a pull request!)
 6. `sh ./setup.sh`
-7. there is no step 6
 
 ## featuring
 
