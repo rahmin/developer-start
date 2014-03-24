@@ -47,6 +47,10 @@ nvm install v0.10.26
 nvm alias default v0.10.26
 
 # global node modules
+npm config set registry https://goodeggs.registry.nodejitsu.com/
+npm config set always-auth true
+npm config set strict-ssl false
+npm cache clean
 npm install --global grunt-cli coffee-script
 
 # install a ruby
