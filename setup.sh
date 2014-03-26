@@ -111,6 +111,11 @@ cd ~/Projects/kale
 npm cache clean
 npm install
 
+# lentil
+git clone https://github.com/goodeggs/lentil ~/Projects/lentil
+cd ~/Projects/lentil
+npm install
+
 # garbanzo
 git clone https://github.com/goodeggs/garbanzo ~/Projects/garbanzo
 cd ~/Projects/garbanzo
