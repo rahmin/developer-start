@@ -44,10 +44,6 @@ nvm install v0.10.26
 nvm alias default v0.10.26
 
 # global node modules
-npm config set registry https://goodeggs.registry.nodejitsu.com/
-npm config set always-auth true
-npm config set strict-ssl false
-npm cache clean
 npm install --global grunt-cli coffee-script
 
 # install a ruby
@@ -63,6 +59,12 @@ mkdir ~/Projects
 # passwords
 git clone https://github.com/goodeggs/vault ~/.goodeggs-vault
 open ~/.goodeggs-vault/Good\ Eggs.agilekeychain
+
+# set goodeggs npm registry
+npm config set registry https://goodeggs.registry.nodejitsu.com/
+npm config set always-auth true
+npm config set strict-ssl false
+npm cache clean
 
 # heroku
 brew install heroku
