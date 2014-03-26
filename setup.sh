@@ -28,8 +28,7 @@ brew install wget git rbenv ruby-build qt nvm
 # install homebrew cask and some mac os apps
 brew tap phinze/homebrew-cask
 brew install brew-cask
-brew cask install onepassword google-chrome hipchat alfred skype caffeine
-brew cask alfred link
+brew cask install onepassword google-chrome firefox flowdock google-hangouts
 
 # configure git
 git config --global push.default simple
