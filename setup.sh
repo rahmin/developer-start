@@ -40,6 +40,7 @@ brew cask install onepassword google-chrome firefox flowdock google-hangouts
 echo "Configuring git settings:"
 gitusername=$(git config --global user.name)
 gituseremail=$(git config --global user.email)
+read -t 0.1 -n 10000 # flush input from stdin
 read -p "What name should go on your commits? " -ei $gitusername gitusername
 read -p "What is your git email address? " -ei $gituseremail gituseremail
 git config --global push.default simple
@@ -66,8 +67,10 @@ mkdir ~/Projects
 #=================
 
 # passwords
-git clone https://github.com/goodeggs/vault ~/.goodeggs-vault
-open ~/.goodeggs-vault/Good\ Eggs.agilekeychain
+if ! [ -d ~/.goodeggs-vault ]; then
+  git clone https://github.com/goodeggs/vault ~/.goodeggs-vault
+  open ~/.goodeggs-vault/Good\ Eggs.agilekeychain
+fi
 
 # set goodeggs npm registry
 npm config set registry https://goodeggs.registry.nodejitsu.com/
@@ -96,34 +99,42 @@ launchctl load ~/Library/LaunchAgents/homebrew.mxcl.rabbitmq.plist
 brew install phantomjs selenium-server-standalone chromedriver
 
 # get production mongodb credentials
-npm install -g dump-and-restore
-read -p "Please enter the AWS access key ID for mongolabs from our 1password vault: " accesskeyid
-read -p "And what is the secret access key? " secretaccesskey
+read -t 0.1 -n 10000 discard # flush input from stdin
+read -p "Please enter the AWS access key ID for mongolabs from our 1password vault: " -e accesskeyid
+read -p "And what is the secret access key? " -e secretaccesskey
 cat <<EOF >> ~/.sekret
 export AWS_ACCESS_KEY_ID=$accesskeyid
 export AWS_SECRET_ACCESS_KEY=$secretaccesskey
 EOF
 
+# install dump-and-restore
+npm install -g dump-and-restore
+
 # install our yeoman generator
 npm install -g yo generator-goodeggs-npm
 
 # kale
-git clone https://github.com/goodeggs/kale ~/Projects/kale
-cd ~/Projects/kale
-npm cache clean
-npm install
+if ! [ -d ~/Projects/kale ]; then
+  git clone https://github.com/goodeggs/kale ~/Projects/kale
+  cd ~/Projects/kale
+  npm install
+fi
 
 # lentil
-git clone https://github.com/goodeggs/lentil ~/Projects/lentil
-cd ~/Projects/lentil
-npm install
+if ! [ -d ~/Projects/lentil ]; then
+  git clone https://github.com/goodeggs/lentil ~/Projects/lentil
+  cd ~/Projects/lentil
+  npm install
+fi
 
 # garbanzo
-git clone https://github.com/goodeggs/garbanzo ~/Projects/garbanzo
-cd ~/Projects/garbanzo
-gem install bundler
-bundle install
-npm install
+if ! [ -d ~/Projects/garbanzo ]; then
+  git clone https://github.com/goodeggs/garbanzo ~/Projects/garbanzo
+  cd ~/Projects/garbanzo
+  gem install bundler
+  bundle install
+  npm install
+fi
 
 # download data
 dump-and-restore kale garbanzo
