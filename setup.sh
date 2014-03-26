@@ -31,9 +31,12 @@ brew install brew-cask
 brew cask install onepassword google-chrome firefox flowdock google-hangouts
 
 # configure git
+echo "Configuring git settings:"
+read -p "What name should go on your commits? " gitusername
+read -p "What is your Good Eggs email address? " gituseremail
 git config --global push.default simple
-git config --global user.name "Max Edmands"
-git config --global user.email "max@goodeggs.com"
+git config --global user.name $gitusername
+git config --global user.email $gituseremail
 git config --global credential.helper osxkeychain
 
 # install nvm and node
