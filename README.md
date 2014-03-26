@@ -9,8 +9,7 @@ Download and install everything you need to make a new Good Eggs machine work. X
 ``
 sudo sh -c 'echo "limit maxfiles 1000000 1000000" >> /etc/launchd.conf'
 ``
-3. `curl https://raw.github.com/goodeggs/developer-start/master/setup.sh > setup.sh`
-4. `bash ./setup.sh`
+3. `curl https://raw.github.com/goodeggs/developer-start/master/setup.sh | bash`
 
 ## featuring
 
