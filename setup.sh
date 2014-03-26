@@ -1,14 +1,7 @@
 #!/bin/sh
 
-# FIRST:::: make sure we have Xcode command line tools.
-# these can be downloaded at https://developer.apple.com/downloads
-# you don't need all of Xcode!
-
 # some tools will complain about not knowing where binaries are, until you do this:
 sudo xcode-select --install
-
-# is the following necessary? it might be.
-# sudo xcode-select --switch /
 
 # set up a basic .profile
 cat <<EOF > ~/.profile
