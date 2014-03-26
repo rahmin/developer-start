@@ -4,7 +4,8 @@
 sudo xcode-select --install
 
 # set up a basic .profile
-cat <<EOF > ~/.profile
+if ! [ -a ~/.profile ]; then
+  cat <<EOF > ~/.profile
 export PATH="/usr/local/bin:\$PATH" # homebrew
 export PATH="./node_modules/.bin:\$PATH" # locally installed node binaries
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
@@ -13,13 +14,16 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi # rbenv shims & auto
 [ -s \$HOME/.nvm/nvm.sh ] && . \$HOME/.nvm/nvm.sh  # load nvm
 
 EOF
+fi
 
 # install homebrew
-ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"
+if ! which -s brew; then
+  ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"
+fi
 brew doctor
 
 # install important brew packages
-brew install wget git rbenv ruby-build qt
+brew install wget git rbenv ruby-build qt nvm
 
 # install homebrew cask and some mac os apps
 brew tap phinze/homebrew-cask
