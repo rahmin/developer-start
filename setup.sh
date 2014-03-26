@@ -38,8 +38,10 @@ brew cask install onepassword google-chrome firefox flowdock google-hangouts
 
 # configure git
 echo "Configuring git settings:"
-read -p "What name should go on your commits? " gitusername
-read -p "What is your Good Eggs email address? " gituseremail
+gitusername=$(git config --global user.name)
+gituseremail=$(git config --global user.email)
+read -p "What name should go on your commits? " -ei $gitusername gitusername
+read -p "What is your git email address? " -ei $gituseremail gituseremail
 git config --global push.default simple
 git config --global user.name $gitusername
 git config --global user.email $gituseremail
