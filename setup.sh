@@ -64,6 +64,10 @@ open ~/.goodeggs-vault/Good\ Eggs.agilekeychain
 npm config set registry https://goodeggs.registry.nodejitsu.com/
 npm config set always-auth true
 npm config set strict-ssl false
+echo "We're about to ask you to login to npm. Before you do this,"
+echo "make sure you add yourself to the nodejitsu npm registry."
+echo "(Ask another engineer if you need help with this.)"
+npm login
 npm cache clean
 
 # heroku
