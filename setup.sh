@@ -109,6 +109,7 @@ read -p "And what is the secret access key? " -e -s AWS_SECRET_ACCESS_KEY
 cat <<EOF >> ~/.sekret
 export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
 export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+
 EOF
 
 # install dump-and-restore
@@ -139,6 +140,12 @@ if ! [ -d ~/Projects/garbanzo ]; then
   bundle install
   npm install
 fi
+
+# add domains to etc/hosts
+cat <<EOF | sudo tee -a /etc/hosts
+127.0.0.1 admin.goodeggs.dev lentil.goodeggs.dev manage.goodeggs.dev ops.goodeggs.dev status.goodeggs.dev www.goodeggs.dev
+
+EOF
 
 # download data
 dump-and-restore kale garbanzo
