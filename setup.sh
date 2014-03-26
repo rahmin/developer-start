@@ -10,8 +10,8 @@ export PATH="/usr/local/bin:\$PATH" # homebrew
 export PATH="./node_modules/.bin:\$PATH" # locally installed node binaries
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 export RBENV_ROOT=/usr/local/var/rbenv # use brew's rbenv directory
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi # rbenv shims & autocomplete
-[ -s \$HOME/.nvm/nvm.sh ] && . \$HOME/.nvm/nvm.sh  # load nvm
+if which rbenv > /dev/null; then eval "\$(rbenv init -)"; fi # rbenv shims & autocomplete
+source \$(brew --prefix nvm)/nvm.sh
 
 EOF
 fi
@@ -38,8 +38,6 @@ git config --global user.email "max@goodeggs.com"
 git config --global credential.helper osxkeychain
 
 # install nvm and node
-curl https://raw.github.com/creationix/nvm/master/install.sh | sh
-. ~/.profile
 nvm install v0.10.26
 nvm alias default v0.10.26
 
