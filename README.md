@@ -5,11 +5,7 @@ Download and install everything you need to make a new Good Eggs machine work. X
 ## instructions
 
 1. Update to OSX Mavericks (10.9+)
-2. Increase the max number of open files and then *restart* your computer:
-``
-sudo sh -c 'echo "limit maxfiles 1000000 1000000" >> /etc/launchd.conf'
-``
-3. `curl https://raw.github.com/goodeggs/developer-start/master/setup.sh | bash`
+2. `curl https://raw.github.com/goodeggs/developer-start/master/setup.sh | bash`
 
 ## featuring
 

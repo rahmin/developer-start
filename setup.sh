@@ -63,6 +63,10 @@ rbenv global 1.9.3-p194
 # projects directory
 mkdir ~/Projects
 
+# increase maximum number of open files
+echo "Increasing number of maximum open files to a very high number, so node is happy..."
+sudo sh -c 'echo "limit maxfiles 1000000 1000000" >> /etc/launchd.conf'
+
 # Good Eggs stuff
 #=================
 
@@ -138,3 +142,8 @@ fi
 
 # download data
 dump-and-restore kale garbanzo
+
+# we're done!
+echo "Done setting up your developer laptop! Now feel free to make it your own."
+echo "We recommend restarting your machine at this point."
+
