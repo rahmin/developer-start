@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # some tools will complain about not knowing where binaries are, until you do this:
 sudo xcode-select --install
