@@ -13,6 +13,11 @@ export RBENV_ROOT=/usr/local/var/rbenv # use brew's rbenv directory
 if which rbenv > /dev/null; then eval "\$(rbenv init -)"; fi # rbenv shims & autocomplete
 source \$(brew --prefix nvm)/nvm.sh
 
+# for passwords and stuff:
+if [ -f ~/.sekret ]; then
+  source ~/.sekret
+fi
+
 EOF
 fi
 
@@ -87,10 +92,12 @@ launchctl load ~/Library/LaunchAgents/homebrew.mxcl.rabbitmq.plist
 brew install phantomjs selenium-server-standalone chromedriver
 
 # get production mongodb credentials
-npm install -g git+https://github.com/goodeggs/dump-and-restore
-cat <<EOF >> ~/.profile
-export AWS_ACCESS_KEY_ID=xxxx # check 1password
-export AWS_SECRET_ACCESS_KEY=xxxx # check 1password
+npm install -g dump-and-restore
+read -p "Please enter the AWS access key ID for mongolabs from our 1password vault: " accesskeyid
+read -p "And what is the secret access key? " secretaccesskey
+cat <<EOF >> ~/.sekret
+export AWS_ACCESS_KEY_ID=$accesskeyid
+export AWS_SECRET_ACCESS_KEY=$secretaccesskey
 EOF
 
 # kale
