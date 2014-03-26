@@ -100,8 +100,8 @@ brew install phantomjs selenium-server-standalone chromedriver
 
 # get production mongodb credentials
 read -t 0.1 -n 10000 discard # flush input from stdin
-read -p "Please enter the AWS access key ID for mongolabs from our 1password vault: " -e accesskeyid
-read -p "And what is the secret access key? " -e secretaccesskey
+read -p "Please enter the AWS access key ID for mongolabs from our 1password vault: " -e -s accesskeyid
+read -p "And what is the secret access key? " -e -s secretaccesskey
 cat <<EOF >> ~/.sekret
 export AWS_ACCESS_KEY_ID=$accesskeyid
 export AWS_SECRET_ACCESS_KEY=$secretaccesskey
