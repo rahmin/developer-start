@@ -4,7 +4,7 @@ Download and install everything you need to make a new Good Eggs machine work. X
 
 ## instructions
 
-1. Update to OSX Mavericks (10.9+)
+1. Update to [OSX Mavericks (10.9+)](https://itunes.apple.com/us/app/os-x-mavericks/id675248567?mt=12)
 2. `curl https://raw.github.com/goodeggs/developer-start/master/setup.sh | bash`
 
 ## featuring
