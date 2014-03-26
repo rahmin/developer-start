@@ -100,6 +100,9 @@ export AWS_ACCESS_KEY_ID=$accesskeyid
 export AWS_SECRET_ACCESS_KEY=$secretaccesskey
 EOF
 
+# install our yeoman generator
+npm install -g yo generator-goodeggs-npm
+
 # kale
 git clone https://github.com/goodeggs/kale ~/Projects/kale
 cd ~/Projects/kale
