@@ -29,12 +29,8 @@ fi
 brew doctor
 
 # install important brew packages
-<<<<<<< HEAD
-brew install wget git rbenv ruby-build qt nvm
-=======
 brew install wget git rbenv ruby-build qt
 brew install imagemagick
->>>>>>> Added brew install imagemagick
 
 # install homebrew cask and some mac os apps
 brew tap phinze/homebrew-cask
