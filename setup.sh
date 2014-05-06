@@ -10,8 +10,6 @@ if ! [ -a ~/.profile ]; then
 export PATH="/usr/local/bin:\$PATH" # homebrew
 export PATH="./node_modules/.bin:\$PATH" # locally installed node binaries
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-export RBENV_ROOT=/usr/local/var/rbenv # use brew's rbenv directory
-if which rbenv > /dev/null; then eval "\$(rbenv init -)"; fi # rbenv shims & autocomplete
 source \$(brew --prefix nvm)/nvm.sh
 
 # for passwords and stuff:
@@ -29,7 +27,7 @@ fi
 brew doctor
 
 # install important brew packages
-brew install wget git rbenv ruby-build qt
+brew install wget git
 brew install imagemagick
 
 # install homebrew cask and some mac os apps
@@ -56,10 +54,6 @@ nvm alias default v0.10.26
 
 # global node modules
 npm install --global grunt-cli coffee-script
-
-# install a ruby
-rbenv install 1.9.3-p194
-rbenv global 1.9.3-p194
 
 # projects directory
 mkdir ~/Projects
