@@ -131,14 +131,12 @@ fi
 if ! [ -d ~/Projects/garbanzo ]; then
   git clone https://github.com/goodeggs/garbanzo ~/Projects/garbanzo
   cd ~/Projects/garbanzo
-  gem install bundler
-  bundle install
   npm install
 fi
 
 # add domains to etc/hosts
 cat <<EOF | sudo tee -a /etc/hosts
-127.0.0.1 admin.goodeggs.dev lentil.goodeggs.dev manage.goodeggs.dev ops.goodeggs.dev status.goodeggs.dev www.goodeggs.dev
+127.0.0.1 admin.goodeggs.dev api.goodeggs.dev lentil.goodeggs.dev manage.goodeggs.dev ops.goodeggs.dev status.goodeggs.dev www.goodeggs.dev
 
 EOF
 
