@@ -1,0 +1,143 @@
+---
+- name: Install important brew packages
+  hosts: dev
+
+
+  tasks:
+  - name: Setup/install xcode
+    shell: scripts/xcode.sh
+
+  - name: Install homebrew
+    shell: scripts/homebrew.sh
+
+  - name: Copy ~/.profile template
+    copy: src=templates/profile dest={{ home }}/.profile backup=yes force=no # If the file exists, skip it
+
+  - name: Add taps
+    homebrew_tap: tap=phinze/homebrew-cask state=present
+
+  - name: Update homebrew
+    homebrew: update_homebrew=yes
+
+  - name: Install packages
+    homebrew: name={{ item }} state=present
+    with_items:
+      - wget
+      - git
+      - rbenv
+      - ruby-build
+      - qt
+      - imagemagick
+      - brew-cask
+      # Dev packages
+      - heroku
+      - mongodb
+      - rabbitmq
+      - phantomjs
+      - selenium-server-standalone
+      - chromedriver
+
+  - name: Install productivity casks
+    homebrew_cask: name={{ item }} state=present
+    with_items:
+      - onepassword
+      - google-chrome
+      - firefox
+      - flowdock
+      - google-hangouts
+
+  - name: Configure git
+    shell: scripts/gitconfig.sh
+
+  - name: Configure nvm
+    shell: scripts/nvm.sh
+
+  - name: Install global npm modules
+    npm: name={{ item }} global=yes state=present
+    with_items:
+      - grunt-cli
+      - coffee-script
+
+  - name: Install ruby 1.9.3-p194
+    command: rbenv install 1.9.3-p194
+
+  - name: Set global ruby 1.9.3-p194
+    command: rbenv global 1.9.3-p194
+
+  - name: Create projects directory
+    file: path=~/Projects state=directory
+
+  - name: Increase number of maximum open files to a very high number, so node is happy
+    lineinfile: line="limit maxfiles 1000000 1000000" dest=/etc/launchd.conf state=present
+    sudo: yes
+
+  # Good Eggs stuff
+  #=================
+  - name: Good Eggs vault
+    git: repo=https://github.com/goodeggs/vault dest=~/.goodeggs-vault
+
+  - name: Open vault with onepassword
+    shell: open ~/.goodeggs-vault/Good\ Eggs.agilekeychain
+
+  - name: Set npm registry to goodeggs.registry.nodejitsu.com
+    command: npm config set registry https://goodeggs.registry.nodejitsu.com/
+
+  - name: npm config always-auth true
+    command: npm config set always-auth true
+
+  - name: npm config strict-ssl false
+    command: npm config set strict-ssl false
+
+  - name: Login to npm
+    shell: scripts/npm.sh
+
+  - name: Enable mongodb on startup
+    file: src=/usr/local/opt/mongodb/homebrew.mxcl.mongodb.plist path=~/Library/LaunchAgents state=link
+
+  - name: Start mongodb
+    shell: launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist
+
+  - name: Enable rabbitmq on startup
+    file: src=/usr/local/opt/rabbitmq/homebrew.mxcl.rabbitmq.plist path=~/Library/LaunchAgents state=link
+
+  - name: Start rabbitmq
+    shell: launchctl load ~/Library/LaunchAgents/homebrew.mxcl.rabbitmq.plist
+
+  - name: Set mongo dump credentials in .sekret
+    shell: scripts/mongocreds.sh
+
+  - name: Install dump-and-restore
+    npm: name=dump-and-restore global=yes state=present
+
+  - name: Install goodeggs yeoman generator
+    npm: name={{ item }} global=yes state=present
+    with_items:
+      - yo
+      - generator-goodeggs-npm
+
+  - name: git clone kale
+    git: repo=https://github.com/goodeggs/kale dest=~/Projects/kale update=no
+
+  - name: Install kale npm dependencies
+    command: npm install chdir=~/Projects/kale creates=~/Projects/kale/node_modules
+
+  - name: git clone lentil
+    git: repo=https://github.com/goodeggs/lentil dest=~/Projects/lentil update=no
+
+  - name: Install lentil npm dependencies
+    command: npm install chdir=~/Projects/lentil creates=~/Projects/lentil/node_modules
+
+  - name: git clone garbanzo
+    git: repo=https://github.com/goodeggs/garbanzo dest=~/Projects/garbanzo update=no
+
+  - name: Install garbanzo npm dependencies
+    command: npm install chdir=~/Projects/garbanzo creates=~/Projects/garbanzo/node_modules
+
+  - name: Add apps to hosts file
+    lineinfile: line="127.0.0.1 admin.goodeggs.dev lentil.goodeggs.dev manage.goodeggs.dev ops.goodeggs.dev status.goodeggs.dev www.goodeggs.dev" dest=/etc/hosts
+    sudo: yes
+
+  - name: Download database dump
+    command: dump-and-restore kale garbanzo
+
+
