@@ -27,8 +27,7 @@ fi
 brew doctor
 
 # install important brew packages
-brew install wget git
-brew install imagemagick
+brew install wget git nvm imagemagick
 
 # install homebrew cask and some mac os apps
 brew tap phinze/homebrew-cask
