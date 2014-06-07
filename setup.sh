@@ -18,6 +18,7 @@ if [ -f ~/.sekret ]; then
 fi
 
 EOF
+  source ~/.profile
 fi
 
 # install homebrew
