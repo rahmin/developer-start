@@ -12,4 +12,3 @@ Download and install everything you need to make a new Good Eggs machine work. X
 - [homebrew](http://brew.sh/) Friendly Mac package manager
 - [homebrew-cask](https://github.com/phinze/homebrew-cask) Download, install, configure, and update GUI apps using homebrew
 - [nvm](https://github.com/creationix/nvm) For multiple node.js versions
-- [rbenv](https://github.com/sstephenson/rbenv) For multiple ruby versions
