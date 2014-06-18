@@ -2,6 +2,13 @@
 
 Download and install everything you need to make a new Good Eggs machine work. Xcode not required.
 
+## prerequisites
+
+1. Log into github so your credentials are in the osxkeychain.
+1. Create an account on [npmjs](https://www.npmjs.org/).
+1. Your mentor has added you to the [goodeggs org](https://github.com/orgs/goodeggs/members) on github.
+1. Your mentor has added you to the [nodejitsu registry](https://goodeggs.npm.nodejitsu.com/manage).
+
 ## instructions
 
 1. Update to [OSX Mavericks (10.9+)](https://itunes.apple.com/us/app/os-x-mavericks/id675248567?mt=12)
