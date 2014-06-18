@@ -12,7 +12,9 @@ if ! [ -a ~/.profile ]; then
 export PATH="/usr/local/bin:\$PATH" # homebrew
 export PATH="./node_modules/.bin:\$PATH" # locally installed node binaries
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-source \$(brew --prefix nvm)/nvm.sh
+if [[ -x $(which brew) ]]; then
+  source \$(brew --prefix nvm)/nvm.sh
+fi
 
 # for passwords and stuff:
 if [ -f ~/.sekret ]; then
@@ -20,7 +22,6 @@ if [ -f ~/.sekret ]; then
 fi
 
 EOF
-  source ~/.profile
 fi
 
 # install homebrew
@@ -32,6 +33,9 @@ mkdir -p ~/Library/LaunchAgents
 
 # install important brew packages
 brew install wget git nvm imagemagick
+
+# source .profile once brew and nvm are setup
+source ~/.profile
 
 # install homebrew cask and some mac os apps
 brew tap phinze/homebrew-cask
