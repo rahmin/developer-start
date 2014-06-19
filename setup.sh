@@ -9,7 +9,7 @@ sudo xcode-select --install
 # set up a basic .profile
 if ! [ -a ~/.profile ]; then
   cat <<EOF > ~/.profile
-export PATH="/usr/local/bin:\$PATH" # homebrew
+export PATH="/usr/local/bin:/usr/local/sbin:\$PATH" # homebrew
 export PATH="./node_modules/.bin:\$PATH" # locally installed node binaries
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 if [[ -x $(which brew) ]]; then
@@ -44,15 +44,16 @@ brew cask install onepassword google-chrome firefox flowdock google-hangouts
 
 # configure git
 echo "Configuring git settings:"
-gitusername=$(git config --global user.name)
-gituseremail=$(git config --global user.email)
-read -t 0.1 -n 10000 # flush input from stdin
-read -p "What name should go on your commits? " -ei $gitusername gitusername
-read -p "What is your git email address? " -ei $gituseremail gituseremail
-git config --global push.default simple
-git config --global user.name $gitusername
-git config --global user.email $gituseremail
-git config --global credential.helper osxkeychain
+gitusername=$(git config --global user.name; exit 0) # exit 0 in case no user.name exists
+gituseremail=$(git config --global user.email; exit 0) # exit 0 in case no user.name exists
+if [[ -z "$gitusername" || -z "$gituseremail" ]]; then
+  read -p "What name should go on your commits? " -er gitusername
+  read -p "What is your git email address? " -er gituseremail
+  git config --global push.default simple
+  git config --global user.name "$gitusername"
+  git config --global user.email "$gituseremail"
+  git config --global credential.helper osxkeychain
+fi
 
 # install nvm and node
 source ~/.profile
@@ -63,7 +64,7 @@ nvm alias default v0.10.26
 npm install --global grunt-cli coffee-script
 
 # projects directory
-mkdir ~/Projects
+mkdir -p ~/Projects
 
 # increase maximum number of open files
 echo "Increasing number of maximum open files to a very high number, so node is happy..."
@@ -106,9 +107,8 @@ brew install phantomjs selenium-server-standalone chromedriver
 
 # get production mongodb credentials
 if [[ ! -f ~/.sekret ]]; then
-    read -t 0.1 -n 10000 discard # flush input from stdin
-    read -p "Please enter the AWS access key ID for mongolabs from our 1password vault: " -e -s AWS_ACCESS_KEY_ID
-    read -p "And what is the secret access key? " -e -s AWS_SECRET_ACCESS_KEY
+    read -p "Please enter the AWS access key ID for mongolabs from our 1password vault: " -ers AWS_ACCESS_KEY_ID
+    read -p "And what is the secret access key? " -ers AWS_SECRET_ACCESS_KEY
     cat <<EOF > ~/.sekret
 export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
 export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
