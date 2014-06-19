@@ -93,7 +93,12 @@ npm cache clean
 brew install heroku
 
 # mongo
-brew install mongodb
+(
+  cd $( brew --prefix )
+  git checkout 46243a1d2 Library/Formula/mongodb.rb # 2.4.8 is what we run in production
+  brew install mongodb
+  git checkout -- Library/Formula/mongodb.rb # restore
+)
 ln -sfv /usr/local/opt/mongodb/*.plist ~/Library/LaunchAgents # load on startup
 launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist # run now
 
