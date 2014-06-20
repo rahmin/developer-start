@@ -12,7 +12,7 @@ if ! [ -a ~/.profile ]; then
 export PATH="/usr/local/bin:/usr/local/sbin:\$PATH" # homebrew
 export PATH="./node_modules/.bin:\$PATH" # locally installed node binaries
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-if [[ -x $(which brew) ]]; then
+if [[ -x \$(which brew) ]]; then
   source \$(brew --prefix nvm)/nvm.sh
 fi
 
