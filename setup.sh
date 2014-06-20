@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 set -e
+input="/dev/tty"
 
 # some tools will complain about not knowing where binaries are, until you do this:
 echo "Making sure you have XCode command line tools..."
@@ -22,11 +23,12 @@ if [ -f ~/.sekret ]; then
 fi
 
 EOF
+  source ~/.profile
 fi
 
 # install homebrew
 if ! which -s brew; then
-  ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"
+  ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)" < $input
 fi
 brew doctor
 mkdir -p ~/Library/LaunchAgents
@@ -47,8 +49,8 @@ echo "Configuring git settings:"
 gitusername=$(git config --global user.name; exit 0) # exit 0 in case no user.name exists
 gituseremail=$(git config --global user.email; exit 0) # exit 0 in case no user.name exists
 if [[ -z "$gitusername" || -z "$gituseremail" ]]; then
-  read -p "What name should go on your commits? " -er gitusername
-  read -p "What is your git email address? " -er gituseremail
+  read -p "What name should go on your commits? " -er gitusername < $input
+  read -p "What is your git email address? " -er gituseremail < $input
   git config --global push.default simple
   git config --global user.name "$gitusername"
   git config --global user.email "$gituseremail"
@@ -86,7 +88,7 @@ npm config set strict-ssl false
 echo "We're about to ask you to login to npm. Before you do this,"
 echo "make sure you add yourself to the nodejitsu npm registry."
 echo "(Ask another engineer if you need help with this.)"
-npm login
+npm login < $input
 npm cache clean
 
 # heroku
@@ -112,8 +114,9 @@ brew install phantomjs selenium-server-standalone chromedriver
 
 # get production mongodb credentials
 if [[ ! -f ~/.sekret ]]; then
-    read -p "Please enter the AWS access key ID for mongolabs from our 1password vault: " -ers AWS_ACCESS_KEY_ID
-    read -p "And what is the secret access key? " -ers AWS_SECRET_ACCESS_KEY
+    read -p "Please enter the AWS access key ID for mongolabs from our 1password vault: " -ers AWS_ACCESS_KEY_ID < $input
+    read -p "And what is the secret access key? " -ers AWS_SECRET_ACCESS_KEY < $input
+
     cat <<EOF > ~/.sekret
 export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
 export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
