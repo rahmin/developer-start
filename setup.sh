@@ -14,7 +14,8 @@ export PATH="/usr/local/bin:/usr/local/sbin:\$PATH" # homebrew
 export PATH="./node_modules/.bin:\$PATH" # locally installed node binaries
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 if [[ -x \$(which brew) ]]; then
-  source \$(brew --prefix nvm)/nvm.sh
+  nvm_path="\$(brew --prefix nvm)/nvm.sh"
+  [[ -f $nvm_path ]] && source $nvm_path
 fi
 
 # for passwords and stuff:
