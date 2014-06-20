@@ -3,10 +3,6 @@
 set -e
 input="/dev/tty"
 
-# some tools will complain about not knowing where binaries are, until you do this:
-echo "Making sure you have XCode command line tools..."
-sudo xcode-select --install
-
 # set up a basic .profile
 echo "Checking .profile..."
 if ! [ -a ~/.profile ]; then
@@ -31,6 +27,7 @@ source ~/.profile
 # install homebrew
 echo "Checking homebrew..."
 if ! which -s brew; then
+  # Homebrew will make sure xcode tools are installed
   ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)" < $input
 fi
 brew doctor
