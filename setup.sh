@@ -116,6 +116,7 @@ brew install phantomjs selenium-server-standalone chromedriver
 # get production mongodb credentials
 if [[ ! -f ~/.sekret ]]; then
     read -p "Please enter the AWS access key ID for mongolabs from our 1password vault: " -ers AWS_ACCESS_KEY_ID < $input
+    echo ""
     read -p "And what is the secret access key? " -ers AWS_SECRET_ACCESS_KEY < $input
 
     cat <<EOF > ~/.sekret
@@ -123,6 +124,7 @@ export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
 export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
 
 EOF
+    source ~/.sekret
 fi
 
 # install dump-and-restore
