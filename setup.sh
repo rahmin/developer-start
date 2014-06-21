@@ -97,7 +97,8 @@ mkdir -p ~/Projects
 
 # increase maximum number of open files
 echo "Checking maxfile limits in launchd..."
-grep -q "^limit maxfiles" /etc/launchd.conf
+# Run in a subshell so we don't exit on non-zero
+(grep -q "^limit maxfiles" /etc/launchd.conf) &> /dev/null
 if [[ $? -ne 0 ]]; then
   echo "Increasing number of maximum open files to a very high number, so node is happy..."
   sudo sh -c 'echo "limit maxfiles 1000000 1000000" >> /etc/launchd.conf'
@@ -105,7 +106,8 @@ fi
 
 # add domains to etc/hosts
 echo "Checking /etc/hosts..."
-grep -q www\.goodeggs\.dev /etc/hosts
+# Run in a subshell so we don't exit on non-zero
+(grep -q www\.goodeggs\.dev /etc/hosts) &> /dev/null
 if [[ $? -ne 0 ]]; then
   cat <<EOF | sudo tee -a /etc/hosts
 127.0.0.1 admin.goodeggs.dev api.goodeggs.dev lentil.goodeggs.dev manage.goodeggs.dev ops.goodeggs.dev status.goodeggs.dev www.goodeggs.dev
@@ -127,7 +129,8 @@ fi
 
 # set goodeggs npm registry
 echo "Checking npm registry..."
-grep -q "^_auth =" ~/.npmrc
+# Run in a subshell so we don't exit on non-zero
+(grep -q "^_auth =" ~/.npmrc) &> /dev/null
 if [[ $? -ne 0 ]]; then
   npm config set registry https://goodeggs.registry.nodejitsu.com/
   npm config set always-auth true
@@ -145,6 +148,7 @@ if [[ ! -f ~/.sekret ]]; then
     read -p "Please enter the AWS access key ID for mongolabs from our 1password vault: " -ers AWS_ACCESS_KEY_ID < $input
     echo ""
     read -p "And what is the secret access key? " -ers AWS_SECRET_ACCESS_KEY < $input
+    echo ""
 
     cat <<EOF > ~/.sekret
 export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
