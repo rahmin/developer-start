@@ -24,8 +24,8 @@ if [ -f ~/.sekret ]; then
 fi
 
 EOF
-  source ~/.profile
 fi
+source ~/.profile
 
 # install homebrew
 if ! which -s brew; then
