@@ -26,6 +26,17 @@ EOF
 fi
 source ~/.profile
 
+if ! [ -f ~/.ssh/id_rsa.pub ]; then
+  # create SSH key
+  ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
+
+  echo "Created SSH key on ~/.ssh/ , please copy the key content of ~/.ssh/id_rsa.pub and add to Github"
+  echo "Follow these instructions: https://help.github.com/articles/generating-ssh-keys#step-3-add-your-ssh-key-to-github"
+  read -p "Click ENTER to continue when you are done"
+else
+  read -p "Found SSH key already exists, ensure this key was added to Github. Click ENTER to continue"
+fi
+
 # install homebrew
 echo "Checking homebrew..."
 if ! which -s brew; then
@@ -125,7 +136,7 @@ fi
 # passwords
 echo "Checking goodeggs-vault..."
 if ! [ -d ~/.goodeggs-vault ]; then
-  git clone https://github.com/goodeggs/vault ~/.goodeggs-vault
+  git clone git@github.com:goodeggs/vault.git ~/.goodeggs-vault
   open ~/.goodeggs-vault/Good\ Eggs.agilekeychain
 fi
 
@@ -171,7 +182,7 @@ npm install -g yo generator-goodeggs-npm
 # kale
 echo "Checking kale..."
 if ! [ -d ~/Projects/kale ]; then
-  git clone https://github.com/goodeggs/kale ~/Projects/kale
+  git clone git@github.com:goodeggs/kale.git ~/Projects/kale
   cd ~/Projects/kale
   npm install
 fi
@@ -179,7 +190,7 @@ fi
 # lentil
 echo "Checking lentil..."
 if ! [ -d ~/Projects/lentil ]; then
-  git clone https://github.com/goodeggs/lentil ~/Projects/lentil
+  git clone git@github.com:goodeggs/lentil.git ~/Projects/lentil
   cd ~/Projects/lentil
   npm install
 fi
@@ -187,7 +198,7 @@ fi
 # garbanzo
 echo "Checking garbanzo..."
 if ! [ -d ~/Projects/garbanzo ]; then
-  git clone https://github.com/goodeggs/garbanzo ~/Projects/garbanzo
+  git clone git@github.com:goodeggs/garbanzo.git ~/Projects/garbanzo
   cd ~/Projects/garbanzo
   npm install
 fi
