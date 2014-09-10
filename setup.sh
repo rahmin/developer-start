@@ -47,7 +47,13 @@ brew doctor
 mkdir -p ~/Library/LaunchAgents
 
 # install important brew packages
-brew install wget git nvm imagemagick
+brew install wget git nvm imagemagick redis
+
+# To have launchd start redis at login:
+ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
+
+# Then to load redis now:
+launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
 
 # source .profile once brew and nvm are setup
 source ~/.profile
@@ -214,4 +220,3 @@ dump-and-restore -r latest kale
 # we're done!
 echo "Done setting up your developer laptop! Now feel free to make it your own."
 echo "We recommend restarting your machine at this point."
-
