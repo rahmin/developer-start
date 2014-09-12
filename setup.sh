@@ -72,12 +72,7 @@ brew cask install google-chrome firefox flowdock google-hangouts
 brew install heroku
 
 # mongo
-(
-  cd $( brew --prefix )
-  git checkout 46243a1d2 Library/Formula/mongodb.rb # 2.4.8 is what we run in production
-  brew install mongodb
-  git checkout -- Library/Formula/mongodb.rb # restore
-)
+brew install mongodb
 ln -sfv /usr/local/opt/mongodb/*.plist ~/Library/LaunchAgents # load on startup
 launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist # run now
 
