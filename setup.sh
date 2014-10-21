@@ -41,7 +41,7 @@ fi
 echo "Checking homebrew..."
 if ! which -s brew; then
   # Homebrew will make sure xcode tools are installed
-  ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)" < $input
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" < $input
 fi
 brew doctor
 mkdir -p ~/Library/LaunchAgents
